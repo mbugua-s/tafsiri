@@ -5,16 +5,25 @@ import { TextInput } from 'react-native'
 import { Button } from 'react-native'
 import { Pressable } from 'react-native'
 
-export default class LoginScreen extends Component {
+export default class RegisterScreen extends Component {
   render() {
     return (
       <View style = {styles.container}>
             <Text style = {styles.title}>Tafsiri</Text>
-            <Text style = {styles.description}>Log in to continue</Text>
+            <Text style = {styles.description}>Fill in your details below</Text>
 
             <View style = {styles.inputView}>
                 <TextInput
                     placeholder='Email'
+
+                    placeholderTextColor={colours.black}
+                    style = {styles.inputText}
+                ></TextInput>
+            </View>
+
+            <View style = {styles.inputView}>
+                <TextInput
+                    placeholder='Username'
 
                     placeholderTextColor={colours.black}
                     style = {styles.inputText}
@@ -33,12 +42,14 @@ export default class LoginScreen extends Component {
             <View style = {styles.buttonArea}>
                 <Pressable
                     style={styles.button}>
-                    <Text style = {styles.buttonText}>Log In</Text>
+                    <Text style = {styles.buttonText}>Register</Text>
                 </Pressable>
+                
+                <Text style = {styles.description}>Fill in your details below</Text>
                 
                 <Pressable
                     style={[styles.button, styles.registerButton]}>
-                    <Text style = {styles.buttonText}>Register</Text>
+                    <Text style = {styles.buttonText}>Log In</Text>
                 </Pressable>
             </View>
             
@@ -53,6 +64,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: 'center',
         alignItems: "center",
+        top: "5%"
     },
     
     title: {
