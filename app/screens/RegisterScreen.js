@@ -4,11 +4,12 @@ import colours from '../config/colours'
 import { TextInput } from 'react-native'
 import { Button } from 'react-native'
 import { Pressable } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
 
-export default class RegisterScreen extends Component {
-  render() {
+export default function RegisterScreen({navigation})
+{
     return (
-      <View style = {styles.container}>
+        <View style = {styles.container}>
             <Text style = {styles.title}>Tafsiri</Text>
             <Text style = {styles.description}>Fill in your details below</Text>
 
@@ -41,22 +42,26 @@ export default class RegisterScreen extends Component {
 
             <View style = {styles.buttonArea}>
                 <Pressable
-                    style={styles.button}>
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Landing')}
+                >
                     <Text style = {styles.buttonText}>Register</Text>
                 </Pressable>
                 
-                <Text style = {styles.description}>Fill in your details below</Text>
+                <Text style = {styles.description}>Already have an account?</Text>
                 
                 <Pressable
-                    style={[styles.button, styles.registerButton]}>
+                    style={[styles.button, styles.registerButton]}
+                    onPress={() => navigation.navigate('Login')}
+                >
                     <Text style = {styles.buttonText}>Log In</Text>
                 </Pressable>
             </View>
             
-      </View>
+        </View>
     )
-  }
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: 'center',
         alignItems: "center",
-        top: "5%"
+        top: "2%"
     },
     
     title: {

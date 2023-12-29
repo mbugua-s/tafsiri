@@ -4,11 +4,12 @@ import colours from '../config/colours'
 import { TextInput } from 'react-native'
 import { Button } from 'react-native'
 import { Pressable } from 'react-native'
+// import { NavigationContainer } from '@react-navigation/native';
 
-export default class LoginScreen extends Component {
-  render() {
+export default function LoginScreen({ navigation })
+{
     return (
-      <View style = {styles.container}>
+        <View style = {styles.container}>
             <Text style = {styles.title}>Tafsiri</Text>
             <Text style = {styles.description}>Log in to continue</Text>
 
@@ -32,19 +33,22 @@ export default class LoginScreen extends Component {
 
             <View style = {styles.buttonArea}>
                 <Pressable
-                    style={styles.button}>
-                    <Text style = {styles.buttonText}>Log In</Text>
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Landing')}
+                >
+                    <Text style = {styles.buttonText}>Log In</Text>                    
                 </Pressable>
                 
                 <Pressable
-                    style={[styles.button, styles.registerButton]}>
+                    style={[styles.button, styles.registerButton]}
+                    onPress={() => navigation.navigate('Register')}
+                >
                     <Text style = {styles.buttonText}>Register</Text>
                 </Pressable>
             </View>
             
-      </View>
+        </View>
     )
-  }
 }
 
 const styles = StyleSheet.create({
