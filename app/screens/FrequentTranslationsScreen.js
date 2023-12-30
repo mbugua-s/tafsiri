@@ -1,21 +1,43 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Pressable, Modal } from 'react-native'
+import React, { useState } from 'react'
 import colours from '../config/colours'
+import TranslationModal from '../components/TranslationModal'
 
 export default function FrequentTranslationsScreen({ navigation }) {
+    const [visible, setVisible] = useState(false)
+
+    const openPopup = () => {
+        setVisible(true)
+    }
+
+    const closePopup = () => {
+        setVisible(false)
+    }
+    
     return (
         <View style = {styles.container}>
             <Pressable
                 style={styles.button}
-                onPress={() => navigation.navigate('Register')}
+                onPress={openPopup}
             >
                 <Text style = {styles.buttonText}>Add new</Text>
             </Pressable>
 
+            <TranslationModal
+                visible={visible}
+                transparent={true}
+                dismiss={closePopup}
+                margin = {"25%"}
+            >
+                <View style = {styles.popupContent}>
+                    <Text style = {{fontSize: 18}}>Popup opened!</Text>
+                </View>
+            </TranslationModal>
+
             <View style = {styles.translationContainer}>
                 <Pressable
                     style={styles.translation}
-                    onPress={() => navigation.navigate('Login')}
+                    onPress={openPopup}
                 >
                     <Text style = {styles.translationText}>Sample Frequent Translation</Text>
                 </Pressable>
@@ -40,7 +62,7 @@ export default function FrequentTranslationsScreen({ navigation }) {
                 >
                     <Text style = {styles.translationText}>Sample Frequent Translation</Text>
                 </Pressable>
-                
+
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
@@ -118,5 +140,15 @@ const styles = StyleSheet.create({
     translationText: {
         color: colours.white,
         fontSize: 14
+    },
+
+    popupContent: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "#fff",
+        borderColor: "#000",
+        borderWidth: 1,
+        borderRadius: 15,
+        height: 150
     }
 })
