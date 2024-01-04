@@ -3,5 +3,6 @@ export default {
     primary: "dodgerblue",
     secondary: "blue",
     white: "white",
-    textInputBackgroundColor: "#dedddc"
+    textInputBackgroundColor: "#dedddc",
+    tertiary: "#E70000"
 }
