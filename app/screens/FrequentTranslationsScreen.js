@@ -39,56 +39,56 @@ export default function FrequentTranslationsScreen({ navigation }) {
                     style={styles.translation}
                     onPress={openPopup}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>My name is Samuel</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>What are the payment details?</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>How much is the fare?</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>I am hearing impaired</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>What food is available?</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>How are you today?</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>No thank you</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.translation}
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style = {styles.translationText}>Sample Frequent Translation</Text>
+                    <Text style = {styles.translationText}>Sorry, I don't have that</Text>
                 </Pressable>
             </View>
         </View>

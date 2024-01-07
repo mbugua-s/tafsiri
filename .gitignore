@@ -8,7 +8,11 @@ node_modules/
 dist/
 web-build/
 
+# Assets
+app/assets/
+
 # Native
+android/
 *.orig.*
 *.jks
 *.p8

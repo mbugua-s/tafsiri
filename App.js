@@ -7,30 +7,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ResultScreen from './app/screens/ResultScreen';
 import FrequentTranslationsScreen from './app/screens/FrequentTranslationsScreen';
+import TakePhotoScreen from './app/screens/TakePhotoScreen';
 // import { client } from "@gradio/client"
 
 const Stack = createNativeStackNavigator();
 
-const tryAPI = async () => {
-    try {
-        const response = await fetch(
-            `http://192.168.0.14:5000/send`
-        )
-        const json = await response.json()
-        console.log(json)
-    }
-
-    catch (error) {
-        console.error(error)
-    }
-}
-
-// tryAPI()
-
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='Result'>
+            <Stack.Navigator initialRouteName='Login'>
                 <Stack.Screen
                     name='Login' 
                     component={LoginScreen}
@@ -44,11 +29,17 @@ export default function App() {
                 <Stack.Screen
                     name='Result'
                     component={ResultScreen}
+                    initialParams={{ translatedText: "Loading..."}}
                 />
 
                 <Stack.Screen
                     name='Translations'
                     component={FrequentTranslationsScreen}
+                />
+
+                <Stack.Screen
+                    name='TakePhoto'
+                    component={TakePhotoScreen}
                 />
             </Stack.Navigator>
         </NavigationContainer>

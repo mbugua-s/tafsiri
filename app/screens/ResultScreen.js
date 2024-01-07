@@ -1,35 +1,64 @@
 import { StyleSheet, Text, View, Image, Dimensions, Pressable } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import colours from '../config/colours'
+import { Audio } from 'expo-av'
 
 const width = Dimensions.get("window").width
-const height = Dimensions.get("window").height
 
-export default function LandingScreen() {
+export default function ResultScreen({ route, navigation }) {
+    const [sound, setSound] = useState()
+
+    async function playSound()
+    {
+        console.log('Loading sound')
+        const { sound } = await Audio.Sound.createAsync(require('../assets/audio/speech.mp3'))
+        setSound(sound)
+
+        console.log('Playing sound')
+        await sound.playAsync()
+    }
+
+    useEffect(() => {
+        return sound
+            ? () => {
+                console.log('Unloading sound')
+                sound.unloadAsync()
+            }
+            : undefined;
+    }, [sound])
+
+
+    const { translatedText } = route.params
+    // console.log(translatedText)
+
     return (
         <View style = {styles.container}>
             <Image 
                 style = {styles.translationImage}
-                source = {require('../assets/IMG_2444.jpeg')}
+                source = {require('../assets/downloads/upload.jpeg')}
             />
 
             <View style={styles.translationContainer}>
-                <Text style = {styles.translationText}>"Happy"</Text>
+                <Text style = {styles.translationText}>{JSON.stringify(translatedText)}</Text>
                 <Pressable
                     style={styles.button}
+                    onPress = {playSound}
                 >
-                    <Text style = {styles.buttonText}>Play Audio</Text>
+                    <Text
+                        style={styles.buttonText}>Play Audio</Text>
                 </Pressable>
 
                 <View style = {styles.continueStopButtons}>
                     <Pressable
-                        style={{...styles.button, backgroundColor: colours.secondary}}
+                        style={{ ...styles.button, backgroundColor: colours.secondary }}
+                        onPress={() => navigation.navigate('TakePhoto')}
                     >
                         <Text style = {styles.buttonText}>Continue</Text>
                     </Pressable>
                     
                     <Pressable
-                        style={{...styles.button, backgroundColor: colours.tertiary}}
+                        style={{ ...styles.button, backgroundColor: colours.tertiary }}
+                        onPress={() => navigation.navigate('Translations')}
                     >
                         <Text style = {styles.buttonText}>Stop</Text>
                     </Pressable>
