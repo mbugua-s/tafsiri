@@ -1,13 +1,16 @@
 import { Text, StyleSheet, View } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import colours from '../config/colours'
 import { TextInput } from 'react-native'
 import { Button } from 'react-native'
 import { Pressable } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { fb_app, auth } from '../config/firebaseConfig'
 
-export default function RegisterScreen({navigation})
-{
+export default function RegisterScreen({ navigation }) {
+    const [ email, setEmail ] = useState("test@gmail.com")
+    const [ password, setPassword ] = useState("12345678")
+    
     return (
         <View style = {styles.container}>
             <Text style = {styles.title}>Tafsiri</Text>
@@ -16,18 +19,10 @@ export default function RegisterScreen({navigation})
             <View style = {styles.inputView}>
                 <TextInput
                     placeholder='Email'
-
                     placeholderTextColor={colours.black}
-                    style = {styles.inputText}
-                ></TextInput>
-            </View>
-
-            <View style = {styles.inputView}>
-                <TextInput
-                    placeholder='Username'
-
-                    placeholderTextColor={colours.black}
-                    style = {styles.inputText}
+                    style={styles.inputText}
+                    value={email}
+                    onChangeText={setEmail}
                 ></TextInput>
             </View>
 
@@ -36,14 +31,30 @@ export default function RegisterScreen({navigation})
                     placeholder='Password'
                     secureTextEntry
                     placeholderTextColor={colours.black}
-                    style = {styles.inputText}
+                    style={styles.inputText}
+                    value={password}
+                    onChangeText={setPassword}
                 ></TextInput>
             </View>
 
             <View style = {styles.buttonArea}>
                 <Pressable
                     style={styles.button}
-                    onPress={() => navigation.navigate('TakePhoto')}
+                    onPress={ async () => {
+                        try {
+                            console.log("Register button pressed")
+                            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+                            const user = userCredential.user;
+                            console.log("User registered")
+                            navigation.navigate('TakePhoto')
+                        }
+                        
+                        catch (error) {
+                            console.error(error)
+                        }                       
+                        
+                    }
+                    }
                 >
                     <Text style = {styles.buttonText}>Register</Text>
                 </Pressable>
@@ -81,8 +92,7 @@ const styles = StyleSheet.create({
     
     description: {
         fontSize: 17,
-        bottom: '5%',
-        
+        bottom: '5%',       
     },
 
     inputView: {

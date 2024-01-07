@@ -11,6 +11,9 @@ web-build/
 # Assets
 app/assets/
 
+# Config
+app/config/firebaseConfig.js
+
 # Native
 android/
 *.orig.*

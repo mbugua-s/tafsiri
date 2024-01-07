@@ -50,7 +50,7 @@ export default function TakePhotoScreen({ navigation }) {
 
                     try {
                         const response = await FileSystem.uploadAsync(
-                            `http://172.20.10.2:5000/send`,
+                            `http://192.168.0.14:5000/send`,
                             filePath,
                             {
                                 httpMethod: 'POST',
