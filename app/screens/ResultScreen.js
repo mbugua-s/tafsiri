@@ -40,6 +40,7 @@ export default function ResultScreen({ route, navigation }) {
 
             <View style={styles.translationContainer}>
                 <Text style = {styles.translationText}>{JSON.stringify(translatedText)}</Text>
+                {/* <Text style = {styles.translationText}>"Me"</Text> */}
                 <Pressable
                     style={styles.button}
                     onPress = {playSound}
